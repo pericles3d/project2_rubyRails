@@ -22,8 +22,10 @@ As the administrator:
 I want to have control over the blog.
 I want to send a daily newsletter to the players.
 
-## Wireframe
+## ERD
 ![](https://raw.githubusercontent.com/pericles3d/project2_rubyRails/starter/public/images/ScreenShot%202015-07-27%20at%2012.33.43%20AM.png)
 
+## Wireframes
+![](https://raw.githubusercontent.com/pericles3d/project2_rubyRails/starter/public/images/IMG_3279%202015-07-27%20at%2012.33.43%20AM.jpg)
 
 # project2_rubyRails
