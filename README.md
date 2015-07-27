@@ -23,7 +23,7 @@ I want to have control over the blog.
 I want to send a daily newsletter to the players.
 
 ## Wireframe
-![](/Users/periclesmichielin/Documents/Workspace/GA/week06/day01/BolaoDaCopa/public/images/ScreenShot%202015-07-27%20at%2012.33.43%20AM.png)
+![](https://raw.githubusercontent.com/pericles3d/project2_rubyRails/starter/public/images/ScreenShot%202015-07-27%20at%2012.33.43%20AM.png)
 
 
 # project2_rubyRails
