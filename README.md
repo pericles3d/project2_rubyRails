@@ -12,15 +12,15 @@ I want to build an online app that will allow every person to create a login, fi
 ![](http://sarma.mk/wp-content/uploads/2013/12/world-cup-brazil-schedule1.jpg)
 
 ## User Stories
-As a user:
-I want to be able to create a login and password.
-I want to be able to login at any time and check my status against the other players.
-I want to be able to post on a blog and comment on posts.
-If possible I would like to be able to upload a profile picture or choose an avatar picture.
+#### _As a user_:
+* I want to be able to create a login and password.
+* I want to be able to login at any time and check my status against the other players.
+* I want to be able to post on a blog and comment on posts.
+* If possible I would like to be able to upload a profile picture or choose an avatar picture.
 
-As the administrator:
-I want to have control over the blog.
-I want to send a daily newsletter to the players.
+#### _As the administrator_:
+* I want to have control over the blog.
+* I want to send a daily newsletter to the players.
 
 ## ERD
 ![](https://raw.githubusercontent.com/pericles3d/project2_rubyRails/starter/public/images/ScreenShot%202015-07-27%20at%2012.33.43%20AM.png)
