@@ -1,0 +1,9 @@
+<h1>Users index</h1>
+
+<% @users.each do |u| %>
+Name: <%= u.fname %> <%= u.lname %><br/>
+Username: <%= u.uname %><br/>
+Country: <%= u.country %><br/>
+Picture: <%= u.picture %><br/>
+
+<% end %>
