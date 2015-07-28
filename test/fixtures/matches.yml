@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  matchday: 2015-07-28
+  score1: 1
+  score2: 1
+  city: MyString
+  winner: MyString
+  loser: MyString
+  tie: MyString
+
+two:
+  matchday: 2015-07-28
+  score1: 1
+  score2: 1
+  city: MyString
+  winner: MyString
+  loser: MyString
+  tie: MyString

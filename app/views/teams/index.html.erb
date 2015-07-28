@@ -1,0 +1,56 @@
+<h3>Create Teams (Admin only)</h3>
+
+
+<h3>Add a team:</h3>
+
+<%= form_tag sessions_path do %>
+  <div class="field">
+    <%= label_tag :country_name %>:
+    <%= text_field_tag :name, params[:name] %><br/><br/>
+  </div>
+  <div class="field">
+    <%= label_tag :matches_played %>:
+    <%= text_field_tag :matches, params[:matches] %><br/><br/>
+  </div>
+  <div class="field">
+    <%= label_tag :wins %>:
+    <%= text_field_tag :wins, params[:wins] %><br/><br/>
+  </div>
+  <div class="field">
+    <%= label_tag :ties %>:
+    <%= text_field_tag :ties, params[:ties] %><br/><br/>
+  </div>
+  <div class="field">
+    <%= label_tag :losses %>:
+    <%= text_field_tag :losses, params[:losses] %><br/><br/>
+  </div>
+  <div class="field">
+    <%= label_tag :goals_for %>:
+    <%= text_field_tag :gf, params[:gf] %><br/><br/>
+  </div>
+  <div class="field">
+    <%= label_tag :goals_against %>:
+    <%= text_field_tag :ga, params[:ga] %><br/><br/>
+  </div>
+  <div class="field">
+    <%= label_tag :points %>:
+    <%= text_field_tag :points, params[:points] %><br/><br/>
+  </div>
+  <div class="field">
+    <%= label_tag :flag %>:
+    <%= text_field_tag :flag, params[:flag] %><br/><br/>
+  </div>
+
+  <div class="actions"><%= submit_tag "Log in" %></div>
+<% end %><br/>
+
+Note yet registered? <%= link_to "Create a new account", new_user_path%>
+
+<br/><br/><br/><br/><br/><br/><br/>
+<% @users.each do |u| %>
+Name: <%= u.fname %> <%= u.lname %><br/>
+Username: <%= u.uname %><br/>
+Country: <%= u.country %><br/>
+Picture: <%= u.picture %><br/>
+
+<% end %>
