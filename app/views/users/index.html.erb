@@ -1,5 +1,26 @@
-<h1>Users index</h1>
+<img src = "https://upload.wikimedia.org/wikipedia/en/f/f7/FIFA_World_Cup_2018_Logo.png" style="width:200px;height:228px;">
 
+<h3>Welcome to the World Cup Poll.</h3>
+<p>Your administrator is <%= mail_to "pericles3d@gmail.com", "Pericles Michielin" %>. </p>
+
+
+<h3>Login:</h3>
+
+<%= form_tag sessions_path do %>
+  <div class="field">
+    <%= label_tag :email %>:
+    <%= text_field_tag :email, params[:email] %><br/><br/>
+  </div>
+  <div class="field">
+    <%= label_tag :password %>:
+    <%= password_field_tag :password %><br/><br/>
+  </div>
+  <div class="actions"><%= submit_tag "Log in" %></div>
+<% end %><br/>
+
+Note yet registered? <%= link_to "Create a new account", new_user_path%>
+
+<br/><br/><br/><br/><br/><br/><br/>
 <% @users.each do |u| %>
 Name: <%= u.fname %> <%= u.lname %><br/>
 Username: <%= u.uname %><br/>

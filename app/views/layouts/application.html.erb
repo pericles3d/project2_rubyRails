@@ -13,13 +13,12 @@
     </div>
   <% end %>
   <% if current_user %>
-    <p>Hello, <%= current_user.email %></p>
-    <%= link_to 'Logout', session_path(session), method: :delete%>
+    <p>Hello, <%= current_user.uname %> <%= link_to 'Logout', session_path(session), method: :delete%></p>
   <%else%>
     Already registered? <%= link_to "Please Login", new_session_path%>
   <%end%>
 
 <%= yield %>
-
+<%= render 'layouts/footer' %>
 </body>
 </html>
