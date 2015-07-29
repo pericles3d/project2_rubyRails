@@ -11,13 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728215615) do
+ActiveRecord::Schema.define(version: 20150729183201) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "letter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "match_users", force: :cascade do |t|
+    t.integer  "match_id"
+    t.integer  "user_id"
+    t.integer  "pScore1"
+    t.integer  "pScore2"
+    t.integer  "pWinner"
+    t.integer  "pLoser"
+    t.boolean  "pTie"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "match_users", ["match_id"], name: "index_match_users_on_match_id"
+  add_index "match_users", ["user_id"], name: "index_match_users_on_user_id"
 
   create_table "matches", force: :cascade do |t|
     t.datetime "matchday"

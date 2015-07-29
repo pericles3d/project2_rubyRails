@@ -1,2 +1,26 @@
-<h1>Matches#index</h1>
-<p>Find me in app/views/matches/index.html.erb</p>
+<%= form_for @match do |f| %>
+  <table class="table table-hover table-condensed">
+    <caption>Group Stage</caption>
+    <thead>
+    </thead>
+    <tbody>
+      <% @matches.each do |m| %>
+        <tr>
+          <th scope="row"><%= m.id %></th>
+          <td><%= m.matchday.strftime("%a %b %d, %Y %H:%M") %> </td>
+          <td><%= m.teams.first.name %> </td>
+          <td><%= image_tag m.teams.first.flag, size: "38x26" %></td>
+          <td>
+            <div class="field">
+              <%= f.text_field :score1, :maxlength=>"3" %> X <%= f.text_field :score2, :maxlength=>"3" %>
+            </div>
+          </td>
+          <td><%= image_tag m.teams.last.flag, size: "38x26"%></td>
+          <td><%= m.teams.last.name %></td>
+          <td><%= m.city %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="actions"><%= f.submit %></div><br/><br/>
+<% end %>

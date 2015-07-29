@@ -9,8 +9,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(secure_params)
+    @user.matches << Match.all
     if @user.save
-      redirect_to new_match_path
+      redirect_to match_users_path
     else
       render 'new'
     end
