@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(secure_params)
     if @user.save
-      redirect_to users_path
+      redirect_to new_match_path
     else
       render 'new'
     end

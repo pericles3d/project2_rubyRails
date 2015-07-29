@@ -1,14 +1,14 @@
 class TeamsController < ApplicationController
   def index
-    @teams = Teams.all
+    @teams = Team.all
   end
 
   def new
-    @team = Teams.new
+    @teams = Team.all
   end
 
   def create
-    @team = Teams.new(secure_params)
+    @team = Team.new(secure_params)
     if @team.save
       redirect_to teams_path
     else

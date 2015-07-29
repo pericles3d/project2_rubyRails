@@ -1,9 +1,9 @@
 class MatchesController < ApplicationController
   def index
-    @match = Match.all
   end
 
   def new
+    @matches = Match.all
     @match = Match.new
   end
 
