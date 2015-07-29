@@ -12,18 +12,18 @@
     <tbody>
       <% @matches.each do |m| %>
         <tr>
-          <th scope="row"><%= @matches.find(m).id %></th>
-          <td><%= @matches.find(m).matchday.strftime("%a %b %d, %Y %H:%M") %> </td>
-          <td><%= @matches.find(m).teams.first.name %> </td>
-          <td><%= image_tag @matches.find(m).teams.first.flag, size: "38x26" %></td>
+          <th scope="row"><%= m.id %></th>
+          <td><%= m.matchday.strftime("%a %b %d, %Y %H:%M") %> </td>
+          <td><%= m.teams.first.name %> </td>
+          <td><%= image_tag m.teams.first.flag, size: "38x26" %></td>
           <td>
             <div class="field">
               <%= f.text_field :score1, :maxlength=>"3" %> X <%= f.text_field :score2, :maxlength=>"3" %>
             </div>
           </td>
-          <td><%= image_tag @matches.find(m).teams.last.flag, size: "38x26"%></td>
-          <td><%= @matches.find(m).teams.last.name %></td>
-          <td><%= @matches.find(m).city %></td>
+          <td><%= image_tag m.teams.last.flag, size: "38x26"%></td>
+          <td><%= m.teams.last.name %></td>
+          <td><%= m.city %></td>
         </tr>
       <% end %>
     </tbody>
