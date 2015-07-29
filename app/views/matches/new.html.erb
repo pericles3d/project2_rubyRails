@@ -1,4 +1,4 @@
-<%= form_for @match do |f| %>
+
   <table class="table table-hover table-condensed">
     <caption>Group Stage</caption>
     <thead>
@@ -18,7 +18,7 @@
           <td><%= image_tag m.teams.first.flag, size: "38x26" %></td>
           <td>
             <div class="field">
-              <%= f.text_field :score1, :maxlength=>"3" %> X <%= f.text_field :score2, :maxlength=>"3" %>
+              <%= text_field :score1, :maxlength=>"3" %> X <%= text_field :score2, :maxlength=>"3" %>
             </div>
           </td>
           <td><%= image_tag m.teams.last.flag, size: "38x26"%></td>
@@ -28,5 +28,4 @@
       <% end %>
     </tbody>
   </table>
-  <div class="actions"><%= f.submit %></div><br/><br/>
-<% end %>
+  <div class="actions"><%= link_to %></div><br/><br/>

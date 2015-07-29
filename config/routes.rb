@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-
   root 'users#index'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :teams
   resources :matches
-  
+  resources :match_users, only: [:index]
+  post 'match_users' => 'match_users#update', as: :ticket
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

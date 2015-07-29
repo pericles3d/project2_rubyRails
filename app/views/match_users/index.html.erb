@@ -1,0 +1,33 @@
+  <%= form_tag(ticket_path, method: :post) do %>
+  <table class="table table-hover table-condensed">
+    <caption>Group Stage</caption>
+    <thead>
+      <!-- <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+      </tr> -->
+    </thead>
+    <tbody>
+      <% @userMatches.each do |m| %>
+        <tr>
+          <th scope="row"><%= m.id %></th>
+          <td><%= m.match.matchday.strftime("%a %b %d, %Y %H:%M") %> </td>
+          <td><%= m.match.teams.first.name %> </td>
+          <td><%= image_tag m.match.teams.first.flag, size: "38x26" %></td>
+          <td>
+            <div class="field">
+              <%= text_field_tag :score1, nil, :maxlength=>"3" %> X <%= text_field_tag :score2,nil, :maxlength=>"3" %>
+            </div>
+          </td>
+          <td><%= image_tag m.match.teams.last.flag, size: "38x26"%></td>
+          <td><%= m.match.teams.last.name %></td>
+          <td><%= m.match.city %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= submit_tag "Submit ticket", class: "btn btn-default" %>
+  <%end%>
