@@ -8,15 +8,15 @@
         <tr>
           <th scope="row"><%= m.id %></th>
           <td><%= m.matchday.strftime("%a %b %d, %Y %H:%M") %> </td>
-          <td><%= m.teams.first.name %> </td>
-          <td><%= image_tag m.teams.first.flag, size: "38x26" %></td>
+          <td><%= m.teams[0].name %> </td>
+          <td><%= image_tag m.teams[0].flag, size: "38x26" %></td>
           <td>
             <div class="field">
               <%= f.text_field :score1, :maxlength=>"3" %> X <%= f.text_field :score2, :maxlength=>"3" %>
             </div>
           </td>
-          <td><%= image_tag m.teams.last.flag, size: "38x26"%></td>
-          <td><%= m.teams.last.name %></td>
+          <td><%= image_tag m.teams[1].flag, size: "38x26"%></td>
+          <td><%= m.teams[1].name %></td>
           <td><%= m.city %></td>
         </tr>
       <% end %>
