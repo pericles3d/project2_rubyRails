@@ -1,1 +1,28 @@
 <h1>Hi <%= current_user.uname %>. This is your profile page.</h1>
+
+<%= image_tag current_user.picture, size: "180x200"%>
+
+<p> Here are your picks </p>
+
+
+<table class="table table-hover table-condensed">
+  <caption>Group Stage</caption>
+  <thead>
+  </thead>
+  <tbody>
+    <% @userMatches.each do |m| %>
+      <tr>
+        <th scope="row"><%= m.match.id %></th>
+        <td><%= m.match.matchday.strftime("%a %b %d, %Y %H:%M") %> </td>
+        <td><%= m.match.teams.first.name %> </td>
+        <td><%= image_tag m.match.teams.first.flag, size: "38x26" %></td>
+        <td><%= MatchUser.where(:user_id => @user.id).find(m).pScore1 %> X <%= MatchUser.where(:user_id => @user.id).find(m).pScore2 %>
+        <td><%= image_tag m.match.teams.last.flag, size: "38x26"%></td>
+        <td><%= m.match.teams.last.name %></td>
+        <td><%= m.match.city %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%# link_to "Submit ticket", ticket_path, method: :post, class: "btn btn-default" %>
+<%= submit_tag "Submit ticket"%>
