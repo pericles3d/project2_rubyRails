@@ -3,4 +3,5 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   has_many :matches, :through => :match_users
   has_many :match_users
+  has_many :teams, :through => :matches
 end

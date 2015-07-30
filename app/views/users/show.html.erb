@@ -24,3 +24,45 @@
     <% end %>
   </tbody>
 </table>
+  <% winners = [] %>
+  <% @userMatches.each do |m| %>
+    <% if MatchUser.where(:user_id => @user.id).find(m).pScore1 > MatchUser.where(:user_id => @user.id).find(m).pScore2 %>
+      <%= m.match.teams[0].name %>
+      <% winners.push (m.match.teams[0].name) %>
+    <% elsif MatchUser.where(:user_id => @user.id).find(m).pScore1 < MatchUser.where(:user_id => @user.id).find(m).pScore2 %>
+      <%= m.match.teams[1].name %>
+      <% winners.push (m.match.teams[1].name) %>
+    <% else %>
+      <%= "Tie" %>
+    <% end %>
+  <% end %>
+  <%= winners %>
+  <%= winners.count @teams.find(1).name %>
+
+<table class="table table-hover table-condensed">
+  <caption>Standings</caption>
+  <thead>
+    <tr>
+      <th>Group A</th>
+      <th>Win</th>
+      <th>Tie</th>
+      <th>Loss</th>
+      <th>GF</th>
+      <th>GA</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teams.each do |t| %>
+      <tr>
+        <th scope="row"><%= image_tag @teams.find(t).flag %> <%= @teams.find(t).name %> </th>
+        <td><%= @teams.find(t).wins %> </td>
+        <td><%= @teams.find(t).ties %> </td>
+        <td><%= @teams.find(t).losses %> </td>
+        <td><%= @teams.find(t).gf %> </td>
+        <td><%= @teams.find(t).ga %> </td>
+        <td><%= @teams.find(t).points %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
