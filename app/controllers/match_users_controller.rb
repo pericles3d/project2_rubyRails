@@ -15,8 +15,8 @@ class MatchUsersController < ApplicationController
       @userMatches = MatchUser.all.where(:user_id => @user.id)
       @userMatches.each do |m|
         # logger.debug "result: #{params[:match]["#{m.match.id}"]["#{m.match.teams.first.id}"]}"
-        m.pScore1 = params[:match]["#{m.match.id}"]["#{m.match.teams.first.id}"]
-        m.pScore2 = params[:match]["#{m.match.id}"]["#{m.match.teams.last.id}"]
+        m.pScore1 = params[:match]["#{m.match.id}"]["#{m.match.teams[0].id}"]
+        m.pScore2 = params[:match]["#{m.match.id}"]["#{m.match.teams[1].id}"]
         m.save
       end
     else

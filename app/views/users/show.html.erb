@@ -14,11 +14,11 @@
       <tr>
         <th scope="row"><%= m.match.id %></th>
         <td><%= m.match.matchday.strftime("%a %b %d, %Y %H:%M") %> </td>
-        <td><%= m.match.teams.first.name %> </td>
-        <td><%= image_tag m.match.teams.first.flag, size: "38x26" %></td>
+        <td><%= m.match.teams[0].name %> </td>
+        <td><%= image_tag m.match.teams[0].flag, size: "38x26" %></td>
         <td><%= MatchUser.where(:user_id => @user.id).find(m).pScore1 %> X <%= MatchUser.where(:user_id => @user.id).find(m).pScore2 %>
-        <td><%= image_tag m.match.teams.last.flag, size: "38x26"%></td>
-        <td><%= m.match.teams.last.name %></td>
+        <td><%= image_tag m.match.teams[1].flag, size: "38x26"%></td>
+        <td><%= m.match.teams[1].name %></td>
         <td><%= m.match.city %></td>
       </tr>
     <% end %>
