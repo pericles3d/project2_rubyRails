@@ -28,10 +28,6 @@ ActiveRecord::Schema.define(version: 20150729183201) do
     t.string   "pLoser"
     t.string   "pTie1"
     t.string   "pTie2"
-    t.integer  "tWins"
-    t.integer  "tTie"
-    t.integer  "tLosses"
-    t.integer  "tPoints"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
