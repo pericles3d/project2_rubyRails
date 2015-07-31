@@ -4,7 +4,7 @@
 
 <p> Here are your picks </p>
 
-
+<!-- this code generates the user form which was filled out when he/she signed up. -->
 <table class="table table-hover table-condensed">
   <caption>Group Stage</caption>
   <thead>
@@ -25,18 +25,27 @@
   </tbody>
 </table>
 
-<!-- calculating winners losers and ties -->
+<!-- Bellow is the code for calculating the group standings and stats -->
+<!-- calculating winners losers and ties, goals for, goals against-->
   <% winners = [] %>
   <% losers = [] %>
   <% ties = [] %>
   <% goalsFor = [] %>
+  <% goalsAgainst = [] %>
 
   <% @userMatches.each do |m| %>
+    <!-- calculating the goals for -->
     <% t1n = m.match.teams[0].name %>
     <% gf1 = MatchUser.where(:user_id => @user.id).find(m).pScore1 %>
     <% t2n = m.match.teams[1].name %>
     <% gf2 = MatchUser.where(:user_id => @user.id).find(m).pScore2 %>
-    <% goalsFor.push t1n, gf1, t2n, gf2 %>
+    <% goalsFor.push t1n, gf1, t2n, gf2 %>  <!-- creates an array with all teams and scores -->
+    <!-- calculating the goals against -->
+    <% t1n = m.match.teams[0].name %>
+    <% gf1 = MatchUser.where(:user_id => @user.id).find(m).pScore2 %>
+    <% t2n = m.match.teams[1].name %>
+    <% gf2 = MatchUser.where(:user_id => @user.id).find(m).pScore1 %>
+    <% goalsAgainst.push t1n, gf1, t2n, gf2 %>  <!-- creates an array with all teams and scores -->
 
     <% if MatchUser.where(:user_id => @user.id).find(m).pScore1 > MatchUser.where(:user_id => @user.id).find(m).pScore2 %> <!-- checks if score 1 is bigger than score 2 -->
       <% a = MatchUser.where(:user_id => @user.id).find(m) %> <!-- creates string a to hold the match data -->
@@ -70,6 +79,15 @@
   Ties Array <%= ties %>
   <%= ties.count @teams.find(2).name %><br/>
   Goals For: <%= goalsFor %><br/>
+  <%= goalsFor.each_index.select{|i| goalsFor[i] == "Brazil"}%><br/>
+  <% indexes = goalsFor.each_index.select{|i| goalsFor[i-1] == "Brazil"}%>
+  <%= indexes %><br/>
+  <%= goalsFor[indexes[0]] + goalsFor[indexes[1]] + goalsFor[indexes[2]] %><br/>
+  Goals Against: <%= goalsAgainst %><br/>
+  <%= goalsAgainst.each_index.select{|i| goalsAgainst[i] == "Brazil"}%><br/>
+  <% indexes = goalsAgainst.each_index.select{|i| goalsAgainst[i-1] == "Brazil"}%>
+  <%= indexes %><br/>
+  <%= goalsAgainst[indexes[0]] + goalsAgainst[indexes[1]] + goalsAgainst[indexes[2]] %><br/>
 
 
 
@@ -95,13 +113,17 @@
         <td><%= winners.count t.name %> </td>
         <td><%= ties.count t.name %> </td>
         <td><%= losers.count t.name %> </td>
-        <td><% goalsFor.each_index.select{|i| goalsFor[i] == t.name}%>
+        <td><% goalsFor.each_index.select{|i| goalsFor[i] == t.name}%>  <!-- calculating the goals for -->
             <% indexes = goalsFor.each_index.select{|i| goalsFor[i-1] == t.name}%>
             <% indexes %>
             <%= goalsFor[indexes[0]] + goalsFor[indexes[1]] + goalsFor[indexes[2]] %>
         </td>
-        <td><%= @teams.find(t).ga %> </td>
-        <td><%= @teams.find(t).points %> </td>
+        <td><% goalsAgainst.each_index.select{|i| goalsAgainst[i] == t.name}%>    <!-- calculating the goals against -->
+            <% indexes = goalsAgainst.each_index.select{|i| goalsAgainst[i-1] == t.name}%>
+            <% indexes %>
+            <%= goalsAgainst[indexes[0]] + goalsAgainst[indexes[1]] + goalsAgainst[indexes[2]] %>
+        </td>
+        <td><%= (winners.count t.name) * 3 + (ties.count t.name) %> </td>
       </tr>
     <% end %>
   </tbody>
