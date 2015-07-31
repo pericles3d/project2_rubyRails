@@ -1,28 +1,30 @@
+<div class="container">
+  <%= form_tag ticket_path do %>
+    <table class="table table-hover table-condensed">
+      <caption>Group Stage</caption>
+      <thead>
+      </thead>
+      <tbody>
+        <% @userMatches.each do |m| %>
+          <tr>
+            <th scope="row"><%= m.match.id %></th>
+            <td><%= m.match.matchday.strftime("%a %b %d, %Y %H:%M") %> </td>
+            <td><%= m.match.teams[0].name %> </td>
+            <td><%= image_tag m.match.teams[0].flag, size: "38x26" %></td>
+            <td>
+              <div class="field">
+                <%= text_field "match#{[m.match.id]}", m.match.teams[0].id %> X <%= text_field "match#{[m.match.id]}", m.match.teams[1].id %>
+              </div>
+            </td>
+            <td><%= image_tag m.match.teams[1].flag, size: "38x26"%></td>
+            <td><%= m.match.teams[1].name %></td>
+            <td><%= m.match.city %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%# link_to "Submit ticket", ticket_path, method: :post, class: "btn btn-default" %>
+    <div class="actions"><%= submit_tag "Submit ticket", class: "btn btn-default" %></div><br/>
 
-<%= form_tag ticket_path do %>
-  <table class="table table-hover table-condensed">
-    <caption>Group Stage</caption>
-    <thead>
-    </thead>
-    <tbody>
-      <% @userMatches.each do |m| %>
-        <tr>
-          <th scope="row"><%= m.match.id %></th>
-          <td><%= m.match.matchday.strftime("%a %b %d, %Y %H:%M") %> </td>
-          <td><%= m.match.teams[0].name %> </td>
-          <td><%= image_tag m.match.teams[0].flag, size: "38x26" %></td>
-          <td>
-            <div class="field">
-              <%= text_field "match#{[m.match.id]}", m.match.teams[0].id %> X <%= text_field "match#{[m.match.id]}", m.match.teams[1].id %>
-            </div>
-          </td>
-          <td><%= image_tag m.match.teams[1].flag, size: "38x26"%></td>
-          <td><%= m.match.teams[1].name %></td>
-          <td><%= m.match.city %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%# link_to "Submit ticket", ticket_path, method: :post, class: "btn btn-default" %>
-  <%= submit_tag "Submit ticket"%>
-<% end %>
+  <% end %>
+</div>

@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BolaoDaCopa</title>
+  <title>Bolao da Copa</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render 'layouts/header' %>
   <% flash.each do |name, message| %>
     <div class="flash-message flash-message-<%= name %>">
       <%= message %>
     </div>
   <% end %>
   <% if current_user %>
-    <p>Hello, <%= current_user.uname %> <%= link_to 'Logout', session_path(session), method: :delete%></p>
+    <p class="imagePadding">Logged in as <%= current_user.uname %>, <%= link_to 'Logout', session_path(session), method: :delete%></p>
   <%else%>
-    Already registered? <%= link_to "Please Login", new_session_path%>
+    <p class="imagePadding">Already registered? <%= link_to "Please Login", new_session_path%></p>
   <%end%>
 
 <%= yield %>
-<%= params %>
+
 <%= render 'layouts/footer' %>
 </body>
 </html>

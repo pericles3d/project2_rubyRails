@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @teams = @user.teams.all
+    @teams = Team.all
     if @user
       @userMatches = MatchUser.all.where(:user_id => @user.id)
     else

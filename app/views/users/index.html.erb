@@ -1,33 +1,32 @@
 <div class="container">
 
-
-  <img class="imageCenter" src = "https://upload.wikimedia.org/wikipedia/en/f/f7/FIFA_World_Cup_2018_Logo.png" style="width:200px;height:228px;">
+  <div class="center"><%= image_tag "logo2018.png", size: "180x200"%></div>
 
   <h3 class="center">Welcome to the World Cup Poll.</h3>
   <p class="center">Your administrator is <%= mail_to "pericles3d@gmail.com", "Pericles Michielin" %>. </p>
 
 
-  <h3>Login:</h3>
+  <h4>Login:</h4>
 
   <%= form_tag sessions_path do %>
     <div class="form-group">
       <%= label_tag :email_address %>:<br/>
-      <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Email" %><br/>
+      <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Email" %>
     </div>
     <div class="form-group">
       <%= label_tag :password %>:<br/>
       <%= password_field_tag :password, nil , class: "form-control", placeholder: "Password" %><br/>
     </div>
-    <div class="actions"><%= submit_tag "Log in", class: "btn btn-default active" %></div>
+    <div class="actions"><%= submit_tag "Log in", class: "btn btn-default" %></div>
   <% end %>
 
   <p class="center">Not yet registered? <%= link_to "Create a new account", new_user_path%></p>
 
-  <br/><br/><br/><br/><br/><br/><br/>
+  <!-- <br/><br/><br/><br/><br/><br/><br/>
   <% @users.each do |u| %>
   Name: <%= u.fname %> <%= u.lname %><br/>
   Username: <%= u.uname %><br/>
-  Picture: <%= u.picture %><br/><br/>
+  Picture: <%= u.picture %><br/><br/> -->
 
   <% end %>
 </div>
