@@ -24,20 +24,56 @@
     <% end %>
   </tbody>
 </table>
+
+<!-- calculating winners losers and ties -->
   <% winners = [] %>
+  <% losers = [] %>
+  <% ties = [] %>
+  <% goalsFor = [] %>
+
   <% @userMatches.each do |m| %>
-    <% if MatchUser.where(:user_id => @user.id).find(m).pScore1 > MatchUser.where(:user_id => @user.id).find(m).pScore2 %>
-      <%= m.match.teams[0].name %>
-      <% winners.push (m.match.teams[0].name) %>
+    <% t1n = m.match.teams[0].name %>
+    <% gf1 = MatchUser.where(:user_id => @user.id).find(m).pScore1 %>
+    <% t2n = m.match.teams[1].name %>
+    <% gf2 = MatchUser.where(:user_id => @user.id).find(m).pScore2 %>
+    <% goalsFor.push t1n, gf1, t2n, gf2 %>
+
+    <% if MatchUser.where(:user_id => @user.id).find(m).pScore1 > MatchUser.where(:user_id => @user.id).find(m).pScore2 %> <!-- checks if score 1 is bigger than score 2 -->
+      <% a = MatchUser.where(:user_id => @user.id).find(m) %> <!-- creates string a to hold the match data -->
+      <% a.pWinner = m.match.teams[0].name %> <!-- pWinner gets the team name -->
+      <% a.pLoser = m.match.teams[1].name %> <!-- pLoser gets the team name -->
+      <% a.save %> <!-- pWinner gets saved -->
+      <% winners.push a.pWinner %> <!-- pWinner name gets pushed into database -->
+      <% losers.push a.pLoser %> <!-- pLoser name gets pushed into database -->
     <% elsif MatchUser.where(:user_id => @user.id).find(m).pScore1 < MatchUser.where(:user_id => @user.id).find(m).pScore2 %>
-      <%= m.match.teams[1].name %>
-      <% winners.push (m.match.teams[1].name) %>
+      <% b = MatchUser.where(:user_id => @user.id).find(m) %>
+      <% b.pWinner = m.match.teams[1].name %>
+      <% b.pLoser = m.match.teams[0].name %>
+      <% b.save %>
+      <%winners.push b.pWinner %>
+      <%losers.push b.pLoser %>
     <% else %>
-      <%= "Tie" %>
+      <% c = MatchUser.where(:user_id => @user.id).find(m) %>
+      <% c.pTie1 = m.match.teams[0].name %>
+      <% c.pTie2 = m.match.teams[1].name %>
+      <% c.save %>
+      <%ties.push c.pTie1 %>
+      <%ties.push c.pTie2 %>
     <% end %>
   <% end %>
-  <%= winners %>
-  <%= winners.count @teams.find(1).name %>
+
+  <!-- test stuff -->
+  Winners Array: <%=  winners %>
+  <%= winners.count @teams.find(2).name %><br/>
+  Losers Array <%= losers %>
+  <%= losers.count @teams.find(2).name %><br/>
+  Ties Array <%= ties %>
+  <%= ties.count @teams.find(2).name %><br/>
+  Goals For: <%= goalsFor %><br/>
+
+
+
+
 
 <table class="table table-hover table-condensed">
   <caption>Standings</caption>
@@ -56,10 +92,14 @@
     <% @teams.each do |t| %>
       <tr>
         <th scope="row"><%= image_tag @teams.find(t).flag %> <%= @teams.find(t).name %> </th>
-        <td><%= @teams.find(t).wins %> </td>
-        <td><%= @teams.find(t).ties %> </td>
-        <td><%= @teams.find(t).losses %> </td>
-        <td><%= @teams.find(t).gf %> </td>
+        <td><%= winners.count t.name %> </td>
+        <td><%= ties.count t.name %> </td>
+        <td><%= losers.count t.name %> </td>
+        <td><% goalsFor.each_index.select{|i| goalsFor[i] == t.name}%>
+            <% indexes = goalsFor.each_index.select{|i| goalsFor[i-1] == t.name}%>
+            <% indexes %>
+            <%= goalsFor[indexes[0]] + goalsFor[indexes[1]] + goalsFor[indexes[2]] %>
+        </td>
         <td><%= @teams.find(t).ga %> </td>
         <td><%= @teams.find(t).points %> </td>
       </tr>
